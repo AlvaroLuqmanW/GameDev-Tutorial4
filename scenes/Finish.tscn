@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Area2D
+export var sceneName: String = \"Level 1\"
+
+
+
+func _on_Area2D_body_entered(body):
+	if body.get_name() == \"Player\":
+		get_tree().change_scene(str(\"res://scenes/WinScreen2.tscn\"))
+"
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[node name="Area2D" type="Area2D"]
+script = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[connection signal="body_entered" from="." to="." method="_on_Area2D_body_entered"]
